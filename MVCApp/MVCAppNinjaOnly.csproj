@@ -174,8 +174,11 @@
     <Content Include="Views\Ninjas\ClanGrid.cshtml" />
     <Content Include="Views\Ninjas\CreateClan.cshtml" />
     <Content Include="Views\Ninjas\DeleteClan.cshtml" />
-    <Content Include="Views\Ninjas\DetailsClan.cshtml" />
     <Content Include="Views\Ninjas\EditClan.cshtml" />
+    <Content Include="Views\Ninjas\TopicGrid.cshtml" />
+    <Content Include="Views\Ninjas\CreateTopic.cshtml" />
+    <Content Include="Views\Ninjas\ViewPosts.cshtml" />
+    <Content Include="Views\Ninjas\CreatePost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

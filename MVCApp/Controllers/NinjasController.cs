@@ -18,8 +18,14 @@ namespace MVCApp.Controllers
         // GET: Ninjas
         public ActionResult Index()
         {
-            var ninjas = db.Ninjas.Include(n => n.Clan);
-            return View(ninjas.ToList());
+            var topics = db.Topics;
+            return View(topics.ToList());
+        }
+
+        public ActionResult TopicGrid()
+        {
+            var topics = db.Topics;
+            return View(topics.ToList());
         }
 
         public ActionResult NinjaGrid()
@@ -63,6 +69,67 @@ namespace MVCApp.Controllers
             }
             return View(clan);
         }
+
+        // GET: Ninjas/Create
+        public ActionResult CreateTopic()
+        {
+            return View();
+        }
+
+        // POST: Ninjas/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateTopic(Topic topic)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Topics.Add(topic);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(topic);
+        }
+
+
+
+        // GET: Ninjas/Create
+        public ActionResult CreatePost(int id)
+        {
+            var post = new Post() { TopicId = id };
+            return View(post);
+        }
+
+        // GET: Ninjas/Create
+        public ActionResult ViewPosts(int id)
+        {
+            var posts = db.Posts.Where(x => x.TopicId == id).ToList();
+            return View(posts);
+        }
+
+        // POST: Ninjas/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreatePost(Post post)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Posts.Add(post);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(post);
+        }
+
+
+
+
+
 
         // GET: Ninjas/Create
         public ActionResult Create()

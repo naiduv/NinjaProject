@@ -1,0 +1,47 @@
+﻿@model IEnumerable<NinjaDomain.Classes.Topic>
+
+@{
+    ViewBag.Title = "Ninja";
+    Layout = null;
+}
+
+    @Styles.Render("~/Content/css")
+
+<h2>Ninjas</h2>
+
+<p>
+    @Html.ActionLink("Create New Topic", "CreateTopic")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TopicId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TopicSubject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TopicId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TopicSubject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreated, "{0:d}")
+        </td>
+        <td>
+            @Html.ActionLink("Create Post", "CreatePost", new { id=item.TopicId }) |
+            @Html.ActionLink("See More", "ViewPosts", new { id=item.TopicId })
+        </td>
+    </tr>
+}
+
+</table>
